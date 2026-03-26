@@ -22,7 +22,7 @@ We can use gdb and set manually the eax register to 64, but unfortunately we don
 Looking back at the binary, we only have 3 hints:
 - the buffer of 520 characters
 - fgets, but by reading the manual the function is protected from buffer overflows.
-- printf, which seems possible to be exploited.
+- printf, which seems possible to be exploited. printf(value) alone is also dangereous to use, and is prone to vulnerabilities.
 
 The attack is called **format string vulnerability**, it means that the input passed can be exploited to leak specific data.
 In printf manual, there is an interesting option:
