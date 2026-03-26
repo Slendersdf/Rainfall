@@ -11,7 +11,7 @@ We have to be careful, because in **p()**, we have this line :
 `  if ((unaff_retaddr & 0xb0000000) == 0xb0000000)`
 
 It checks if the return address (unaff_retaddr) starts with "0xb...". In Linux, addresses that starts with "0xb" are located into the Stack.
-So, if we try to execute code insie the buffer on the stack, the program shall detect it and stops (_exit(1);).
+So, if we try to execute code inside the buffer on the stack, the program shall detect it and stops (_exit(1);).
 This avoids to get a shellcode stored on the stack.
 
 But we can see in **p()**, that there is a call for *strdup* to take the input and do a copy of it, and to this copy, it uses *malloc* which stores datas into another memory area: the **Heap**
@@ -29,7 +29,7 @@ strdup("")                                                    = 0x0804a008
 
 "0x0804a008" is the address returned by *strdup*, so this is where our injected shell shall be copied.
 
-The buffer "local_50 [76]" has a size of 76 bytes, but we also need to overwrite the saved address EBP of **main** to get the return address (our jump address), so we need to add 4 bytes, and only at the 81st, we can start write the return address, the EIP (0x0804a008). And on these 80 bytes, we also need to use some of them for the shellcode (found on a shellcodes database), which shall executes the shell we need.
+The buffer "local_50 [76]" has a size of 76 bytes, but we also need to overwrite the saved address EBP of **main** to get the return address (our jump address), so we need to add 4 bytes, and only at the 81st, we can start write the return address, the EIP (0x0804a008). And on these 80 bytes, we also need to use some of them for the shellcode (found on a shellcode database), which shall executes the shell we need. We search a shellcode to execute execve(/bin/sh).
 The command would be :
 
 ```zsh
