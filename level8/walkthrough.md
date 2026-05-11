@@ -40,5 +40,7 @@ service WTFFFFFFFFFFFFFF
 0x804a008, 0x804a018 
 login
 ```
+*service* grants 16 *service* bytes, and "WTFFFFFFFFFFFFFF" grants also 16 padding bytes, so we get 32 bytes in total
+Therefore, *login* can call the system to get the shell.
 
 We are now in a shell, we can display the content of the next level's password.
