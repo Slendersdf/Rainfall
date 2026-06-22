@@ -8,6 +8,7 @@ Then we recover the ID of the effectives group and user (level1) and we set them
 Therefore, such as said in the subject, we look for the .pass file (/home/user/level1/.pass) and we see its content:
 
 ```zsh
+$ ./level0 423
 $ cat /home/user/level1/.pass
 1fe8a524fa4bec01ca4ea2a869af2a02260d4a7d5fe7e7c24d8617e6dca12d3a
 ```
