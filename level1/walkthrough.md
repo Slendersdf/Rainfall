@@ -46,6 +46,7 @@ cat /home/user/level2/.pass
 ```
 
 P.S.: To explain our used commands:
+
 	-	(printf '%.sF' {1..76}; printf '\x44\x84\x04\x08') > /tmp/test
 	We display "F" as many elements inside the list (1 to 76), indeed "%.sF" will take each arg from the list but without displaying anything then display the character "F"
 	Then we display the 4 bytes of the address as hexadecimal value (\ -> escape character), finally we send all the payload inside a temp file to store it in case of future needs.
