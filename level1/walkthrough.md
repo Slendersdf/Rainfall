@@ -1,9 +1,9 @@
 On this level, we got a binary named **level1** (SUID bit set), when we execute it, it seems to wait for an input and leaves after pressing enter.
-However, after some tries if we gave an input of 76 characters or more, it respectively those errors : Illegal Instructions and Segmentation fault
+However, after some tries if we gave an input of 76 characters or more, it respectively says those errors : Illegal Instructions and Segmentation fault
 Meaning, that something is odd with the input, let's analyze the binary with Ghidra and get the decompiled code.
 
 We got a **run** and a **main** function, where it seems not related.
-However, inside the **main** function, there is an use of "gets" (used to reads a line from stdin into his buffer parameter), where the manual specifically says to not use , because no check for buffer overrun is performed and then there is a way to add as much character we wants into the buffer, which can include malevolent code with a buffer overflow attack, for instance.
+However, inside the **main** function, there is an use of "gets" (used to reads a line from stdin into his buffer parameter), where the manual specifically says to not use , because no check for buffer overrun is performed and then there is a way to add as much character as we want into the buffer, which can include malevolent code with a buffer overflow attack, for instance.
 And inside the **run** function, we got a syscall of /bin/sh (our ticket to get the flag)
 So the plan would be to *link* the **main** function to the **run** function. More precisely, to jump from the **main** to the **run** function by manipulating the return address of **main** to be the address of **run**.
 
