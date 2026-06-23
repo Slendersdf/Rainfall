@@ -32,13 +32,13 @@ n	Nothing printed. The corresponding argument must be a pointer to a signed int.
 ```
 
 So what if we could use this to **set the value 64 into the m variable?**
-With Ghidra I search for the address of m: 
+With Ghidra, we searched for the address of m: 
 
 ```
 0804988c  m
 ```
 
-We need one more information, that is **where our format string starts on the stack.** Otherwise, the function is unable to assign the variable because it needs to know **the location in the stack,** and will segfault.
+We need one more information, which is **where our format string starts on the stack.** Otherwise, the function is unable to assign the variable because it needs to know **the location in the stack,** and will segfault.
 To find this location, we ask print to **read the stack argument by argument:**
 
 ```
