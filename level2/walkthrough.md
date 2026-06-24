@@ -1,3 +1,5 @@
+## Buffer overflow : exploiting the heap allocation memory with strdup() and a shellcode
+
 On this level, we got a binary quite similar to the one from level1.
 The execution of this binary waits for an input and print the input before leaving.
 Let's analyze the binary with Ghidra and get the decompiled code, to see more of it.

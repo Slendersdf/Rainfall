@@ -1,3 +1,5 @@
+## Format string vulnerability: exploiting printf() to assign a value to a variable, bis
+
 We have a binary similar to that of the previous level: the main contains a function n(), which calls for fgets(local_20c), p(local_20c) function which uses printf.
 To get the flag **the variable m must be equal to 0x1025544, that is to say 16930116 in decimal.** Let's exploit the format string vulnerability:
 

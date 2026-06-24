@@ -1,3 +1,5 @@
+## Format string vulnerability: exploiting printf() to assign a value to a variable
+
 By having a look inside the binary with Ghidra, we notice it has a main function which calls v().
 
 ```C

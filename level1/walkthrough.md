@@ -1,3 +1,5 @@
+## Buffer overflow manipulation to redirect to another function
+
 On this level, we got a binary named **level1** (SUID bit set), when we execute it, it seems to wait for an input and leaves after pressing enter.
 However, after some tries if we gave an input of 76 characters or more, it respectively says those errors : Illegal Instructions and Segmentation fault
 Meaning, that something is odd with the input, let's analyze the binary with Ghidra and get the decompiled code.

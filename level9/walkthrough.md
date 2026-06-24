@@ -1,3 +1,5 @@
+## Buffer overflow and shellcode the C++ way
+
 In this binary, the code is in C++ and it contains a memcpy, which does not check the buffer's size: an overflow can be exploited. There is no call to system(), so we will have to use a shellcode instead.
 
 The function setAnnotation() uses argv[1] to do its memcpy().

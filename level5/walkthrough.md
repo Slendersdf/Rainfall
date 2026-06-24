@@ -1,3 +1,5 @@
+## GOT overwriting
+
 The main function contains a function n(), which calls for printf and then exit(). Exploring the code, we discover that the most interesting function o(), which calls system(), is not used.
 To get the flag, **we must overwrite exit() towards o().**
 
