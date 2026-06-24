@@ -12,7 +12,7 @@ AAAA 200 b7fd1ac0 b7ff37d0 41414141 20782520 25207825 78252078 20782520 25207825
 
 41414141 is AAAA in hexadecimal, so our input is displayed at the **4th position** in the binary's stack.
 
-2. Get the address of o and exit in the GOT in Ghidra:
+2. Get the address of o and exit in the GOT with `objdump -d level5`:
 
 ```
 080484a4 <o>
