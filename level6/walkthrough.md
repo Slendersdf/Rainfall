@@ -2,7 +2,7 @@
 
 This binary calls malloc two times, and then the function m() is passed into a pointer and is executed. What we are looking for is the function n(), which uses system(). As such, the idea here is to make the main function call n(), and to do that we will **exploit strcpy() since it has no verification of the length of the input:** this is a **heap buffer overflow**.
 
-1. Get the address of n() in Ghidra:
+1. Get the address of n() with `objdump -d ./level6`:
 
 ```
 08048454 <n>:
