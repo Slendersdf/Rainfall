@@ -47,5 +47,5 @@ cat /home/user/level3/.pass
 P.S.: To explain some terms:
 
 -	EBP (Base pointer): A fixed reference pointer which marks the start of the area of the actual function, it's with this pointer that the program knows where are his locals variables, for instance.
--	ESP (Stack pointer): A dynamic pointer who moves everytime when we add or remove datas
--	EIP (Instruction pointer): A return address, in our context where the CPU jumps to execute the next command.
+-	ESP (Stack pointer): A dynamic pointer that points to the top of the stack, it moves everytime when we push or pull data.
+-	EIP (Instruction pointer): It points to the next instruction to be executed by the CPU.
