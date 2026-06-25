@@ -59,6 +59,7 @@ malloc(64)                                       = 0x0804a008
 malloc(4)                                        = 0x0804a050
 ```
 We look at the last two bits since they are different from each other. 0x50 is 80, and 0x08 is 8, so the difference between the two malloc is 72.
+This calculation represents the distance between the location of the pointer of the buffer **__dest** and the pointer that we want to overwrite, **puVar1**. If we send 72 characters, the next character (the 73rd one) will start to overwrite the value of **puVar1**.
 
 Therefore:
 
