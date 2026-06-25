@@ -1,5 +1,4 @@
-void m(void *param_1,int param_2,char *param_3,int param_4,i nt param_5)
-
+void m()
 {
   time_t tVar1;
   
@@ -8,12 +7,12 @@ void m(void *param_1,int param_2,char *param_3,int param_4,i nt param_5)
   return;
 }
 
-undefined4 main(undefined4 param_1,int param_2)
+void main(int ac, char **av)
 
 {
-  undefined4 *puVar1;
+  char *puVar1;
   void *pvVar2;
-  undefined4 *puVar3;
+  char *puVar3;
   FILE *__stream;
   
   puVar1 = malloc(8);
@@ -24,10 +23,10 @@ undefined4 main(undefined4 param_1,int param_2)
   *puVar3 = 2;
   pvVar2 = malloc(8);
   puVar3[1] = pvVar2;
-  strcpy((char *)puVar1[1],*(char **)(param_2 + 4));
-  strcpy((char *)puVar3[1],*(char **)(param_2 + 8));
+  strcpy((char *)puVar1[1], av[1]);
+  strcpy((char *)puVar3[1], av[2];
   __stream = fopen("/home/user/level8/.pass","r");
-  fgets(c,0x44,__stream);
+  fgets(c,0x44,__stream);  //0x44 = 68
   puts("~~");
   return 0;
 }
