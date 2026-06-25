@@ -1,4 +1,4 @@
-void m()
+void m(void)
 {
   time_t tVar1;
   
