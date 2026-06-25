@@ -18,7 +18,7 @@ void main(int ac, char **av)
   __dest = malloc(0x40); //64
   puVar1 = malloc(4); //4
   *puVar1 = m;
-  strcpy(__dest,*(char **)(param_2 + 4)); //copy av[1] (cause +4 = next argument,) to __dest
+  strcpy(__dest,av[1]);
   (*(code *)*puVar1)(); //m function call
   return;
 }
