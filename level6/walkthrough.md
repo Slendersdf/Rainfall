@@ -12,16 +12,16 @@ This binary calls malloc two times, and then the function m() is passed into a p
 
 
 ```C
-void main(undefined4 param_1,int param_2)
+void main(int ac, char **av)
 {
   char *__dest;
-  undefined4 *puVar1;
+  void *puVar1;
   
-  __dest = malloc(0x40);    //64 in hexadecimal
-  puVar1 = malloc(4);       //4 bytes allocation
+  __dest = malloc(0x40);    //64
+  puVar1 = malloc(4);       //4
   *puVar1 = m;
-  strcpy(__dest,*(char **)(param_2 + 4));   //copy input
-  (*(code *)*puVar1)();
+  strcpy(__dest,av[1]);  //copy input
+  (*(code *)*puVar1)();  //m function call
   return;
 }
 ```
@@ -43,7 +43,7 @@ char *strcpy(char *restrict dst, const char *restrict src);
 
 ```
 
-So the source string is our argv[1] (param_2 in the main), and the destination buffer is only 64 bytes. We can deduce that we will inject our attack in the argument of the ELF, and make the destination overflow so that we can overwrite __dest with the address of n().
+So the source string is our av[1], and the destination buffer is only 64 bytes. We can deduce that we will inject our attack in the argument of the ELF, and make the destination overflow so that we can overwrite __dest with the address of n().
 
 3. Let's attack:
 
