@@ -34,7 +34,7 @@ Breakpoint 1, 0x0804867c in main ()
 We have the buffer address.
 
 We still need one more information, where to inject the shellcode.
-The function memcpy(this + 4,param_1,__n) starts at 0x804a00c, and + 4 is the buffer in the N class. As such, 0x804a00c + 0x04 = 0x804A010
+The function memcpy(this + 4,param_1,__n) starts at 0x804a00c, and + 4 is the buffer in the N class. As such, 0x804a00c + 0x04 = 0x804a010
 
 
 Thus the payload will follow this pattern:
