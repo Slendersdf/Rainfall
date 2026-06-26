@@ -42,7 +42,8 @@ service WTFFFFFFFFFFFFFF
 0x804a008, 0x804a018 
 login
 ```
-*service* grants 16 *service* bytes, and "WTFFFFFFFFFFFFFF" grants also 16 padding bytes, so we get 32 bytes in total
+*service* grants 16 *service* bytes, and "WTFFFFFFFFFFFFFF" grants also 16 padding bytes, so we get 32 bytes in total.
+We can see that by testing and seeing that when the system allocates block for each command input, there are a 0x10 bytes difference between each inputs. And 0x10 in hexa, equals to 16 in decimal.
 Therefore, *login* can call the system to get the shell.
 
 We are now in a shell, we can display the content of the next level's password.
